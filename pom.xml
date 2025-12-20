@@ -8,10 +8,10 @@
 		<version>4.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.shrt</groupId>
-	<artifactId>shrt</artifactId>
+	<groupId>com.shortener</groupId>
+	<artifactId>url-shortener</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>shrt</name>
+	<name>shortener</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>25</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -68,7 +68,7 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
