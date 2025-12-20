@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "url_mapping")
 @Getter @Setter
 public class UrlMapping {
     @Id

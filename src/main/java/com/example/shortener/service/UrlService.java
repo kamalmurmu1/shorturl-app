@@ -2,14 +2,18 @@ package com.example.shortener.service;
 
 import com.example.shortener.entity.UrlMapping;
 import com.example.shortener.repository.UrlRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UrlService {
-    @Autowired private UrlRepository repository;
-    @Autowired private Base62Service base62;
+    private final UrlRepository repository;
+    private final Base62Service base62;
+
+    public UrlService(UrlRepository repository, Base62Service base62) {
+        this.repository = repository;
+        this.base62 = base62;
+    }
 
     @Transactional
     public String shortenUrl(String longUrl) {
