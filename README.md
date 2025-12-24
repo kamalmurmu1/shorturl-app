@@ -4,6 +4,7 @@ A high-performance URL shortener built with Spring Boot 3.2, PostgreSQL, and Red
 
 ## 🚀 Features
 
+- **REST API**: Exposes standard RESTful endpoints for URL management.
 - **URL Shortening**: Converts long URLs into short, unique 7-character codes (Base62 encoding).
 - **High Performance**: Uses Redis for caching to ensure sub-millisecond redirect times.
 - **Persistence**: Stores mappings reliably in PostgreSQL.
@@ -16,6 +17,7 @@ A high-performance URL shortener built with Spring Boot 3.2, PostgreSQL, and Red
 
 - **Language**: Java 17+ (Compatible with Java 21/25)
 - **Framework**: Spring Boot 3.2
+- **Architecture**: REST API
 - **Database**: PostgreSQL 15
 - **Cache**: Redis 7
 - **Build Tool**: Maven
@@ -85,10 +87,15 @@ The application will start on `http://localhost:8080`.
 
 ---
 
-## 🔌 API Endpoints
+## 🔌 API Documentation
+
+The application provides a REST API to interact with the service. You can use tools like **Postman**, **cURL**, or your browser to test these endpoints.
 
 ### 1. Shorten a URL
-**POST** `/shorten`
+Creates a new short URL for the given long URL.
+
+- **Endpoint**: `POST /shorten`
+- **Content-Type**: `application/json`
 
 **Request Body:**
 ```json
@@ -97,17 +104,31 @@ The application will start on `http://localhost:8080`.
 }
 ```
 
-**Response:**
+**Response (200 OK):**
+Returns the full shortened URL as a plain string.
 ```text
 http://localhost:8080/a1b2c3d
 ```
 
-### 2. Redirect to Original URL
-**GET** `/{shortCode}`
+**cURL Example:**
+```bash
+curl -X POST http://localhost:8080/shorten \
+     -H "Content-Type: application/json" \
+     -d '{"url": "https://www.example.com"}'
+```
 
-Example: Open `http://localhost:8080/a1b2c3d` in your browser.
-- **Success (302 Found)**: Redirects to the original long URL.
-- **Not Found (404)**: If the code does not exist.
+### 2. Redirect to Original URL
+Redirects the user to the original long URL associated with the short code.
+
+- **Endpoint**: `GET /{shortCode}`
+- **Example**: `GET /a1b2c3d`
+
+**Response:**
+- **302 Found**: Automatically redirects the browser/client to the original URL.
+- **404 Not Found**: If the short code does not exist in the database.
+
+**Browser Test:**
+Simply paste the shortened URL (e.g., `http://localhost:8080/a1b2c3d`) into your browser's address bar.
 
 ---
 
@@ -132,10 +153,10 @@ Example: Open `http://localhost:8080/a1b2c3d` in your browser.
 ```
 src/main/java/com/example/shortener
 ├── config          # Redis & App Configuration
-├── controller      # REST API Controllers
-├── dto             # Data Transfer Objects (Request/Response)
-├── entity          # JPA Entities (Database Tables)
-├── repository      # Data Access Layer (Interfaces)
-├── service         # Business Logic (Shortening, Caching)
+├── controller      # REST API Controllers (UrlController)
+├── dto             # Data Transfer Objects (UrlRequest)
+├── entity          # JPA Entities (UrlMapping)
+├── repository      # Data Access Layer (UrlRepository)
+├── service         # Business Logic (UrlService, Base62Service)
 └── ShortenerApplication.java  # Main Entry Point
 ```
