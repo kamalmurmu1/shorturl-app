@@ -38,7 +38,7 @@ Follow these steps to set up the development environment from scratch.
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/kamalmurmu1/shorturl-app.git
 cd url-shortener
 ```
 
