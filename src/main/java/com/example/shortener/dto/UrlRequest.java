@@ -15,5 +15,5 @@ public class UrlRequest {
 
     // This matches the "url" key in your JSON body
     // Example JSON: { "url": "https://www.example.com" }
-    private String url;
+    private String uhrl;
 }
