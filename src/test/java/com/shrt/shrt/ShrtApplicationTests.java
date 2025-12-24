@@ -1,13 +1,5 @@
 package com.shrt.shrt;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class ShrtApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
+// This test class is deprecated. Please use com.example.shortener.ShortenerApplicationTests instead.
+public class ShrtApplicationTests {
 }
